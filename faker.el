@@ -35,6 +35,12 @@
   "directory used to store fake files"
   :group 'faker)
 
+(define-minor-mode faker-minor-mode
+  "minor mode for faker"
+  :init-value nil
+  :global nil
+  :lighter " Faker")
+
 (defun faker--fake-file-name (name)
   "get the fake file path for this buffer"
   (concat faker-directory
@@ -57,6 +63,8 @@
   (let* ((maybe-fake-file-path (faker--fake-file-name buffer-file-name)))
     (when (file-exists-p maybe-fake-file-path)
       (find-file maybe-fake-file-path)
+      (rename-buffer "*Fake*")
+      (faker-minor-mode 1)
       (message "Found fake file!")
       (sit-for 0.5))))
 
@@ -66,6 +74,7 @@
     (when (file-exists-p maybe-genuine-file-path)
       (find-file maybe-genuine-file-path)
       (message "Found genuine file!")
+      (faker-minor-mode 1)
       (sit-for 0.5))))
 
 (defun fake-to-genuine()
@@ -73,6 +82,7 @@
   (let* ((current-file-path (buffer-file-name))
 	 (genuine-file-path (faker--genuine-file-name current-file-path)))
     (write-file genuine-file-path t)
+    (rename-buffer "*Fake*")
     (delete-file current-file-path)))
 
 ;; * provide
