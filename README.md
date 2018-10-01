@@ -2,11 +2,13 @@
 
 Genuine to Fake, Fake to Genuine.
 
-## What this?
+## What's this?
 
 You can create *fake file*, which is the copy of the current *genuine file*.
 
 And you can replace the *geinuine file* to the *fake file* after editing the *fake file*.
+
+WIP: Add Some Image to Explain What It Is.
 
 ## Setup
 
