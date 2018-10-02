@@ -8,7 +8,7 @@ You can create *fake file*, which is the copy of the current *genuine file*.
 
 And you can replace the *geinuine file* to the *fake file* after editing the *fake file*.
 
-WIP: Add Some Image to Explain What It Is.
+WIP: Add Some Images to Explain What It Is.
 
 ## Setup
 
@@ -22,24 +22,11 @@ WIP: Add Some Image to Explain What It Is.
 
 You can execute commands bellow.
 
-### `genuine-to-fake`
+### faker
 
-Create *fake file* in faker-directory.
++ Create *fake file* in faker-directory if the current file is genuine.
++ Create *genuine file* if the current file is fake.
 
-The *fake file* is the copy of the current file.
+### cycle-fake-genuine
 
-### `fake-to-genuine`
-
-The *genuine file* is replaced by *fake file*.
-
-### `find-fake`
-
-Find whether the current file has *fake file*.
-
-If it has, open the *fake file*.
-
-### `find-genuine`
-
-Find whether the *fake file* has *genuine file*.
-
-If it has, open the *genuine file*.
+Switch genuine to fake, fake to genuine.
