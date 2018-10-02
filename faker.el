@@ -20,9 +20,10 @@
 ;; URL: https://github.com/blue0513
 ;; Version: 0.0.1
 
-;; Load this script
+;; Load this script and set a directory to save fake files.
 ;;
 ;;   (require 'faker)
+;;   (setq faker-directory "/Users/blue0513/.faker/")
 ;;
 
 ;;; Code:
@@ -31,7 +32,7 @@
   "fake to genuine, genuine to fake"
   :group 'emacs)
 
-(defcustom faker-directory "/Users/blue0513/Desktop/temp/faker/"
+(defcustom faker-directory "/path/to/save/dir/"
   "directory used to store fake files"
   :group 'faker)
 
@@ -56,7 +57,9 @@
   (interactive)
   (let* ((old-file-path (buffer-file-name))
 	 (new-file-path (faker--fake-file-name buffer-file-name)))
-    (write-file new-file-path t)))
+    (write-file new-file-path t)
+    (rename-buffer "*Fake*")
+    (faker-minor-mode 1)))
 
 (defun find-fake()
   (interactive)
@@ -74,7 +77,7 @@
     (when (file-exists-p maybe-genuine-file-path)
       (find-file maybe-genuine-file-path)
       (message "Found genuine file!")
-      (faker-minor-mode 1)
+      (faker-minor-mode 0)
       (sit-for 0.5))))
 
 (defun fake-to-genuine()
@@ -82,7 +85,7 @@
   (let* ((current-file-path (buffer-file-name))
 	 (genuine-file-path (faker--genuine-file-name current-file-path)))
     (write-file genuine-file-path t)
-    (rename-buffer "*Fake*")
+    (faker-minor-mode 0)
     (delete-file current-file-path)))
 
 ;; * provide
